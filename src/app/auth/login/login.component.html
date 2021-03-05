@@ -1,0 +1,25 @@
+<form (ngSubmit)="submitForm()" [formGroup]="loginForm">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input formControlName="email" type="email" class="form-control" placeholder="Enter email">
+        <small
+            *ngIf="loginForm.controls['email'].errors?.required && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)"
+            class="form-text text-muted">email required</small>
+        <small
+            *ngIf="loginForm.controls['email'].errors?.pattern && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)"
+            class="form-text text-muted">email invalid</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input formControlName="password" type="password" class="form-control" placeholder="Password">
+        <small
+            *ngIf="loginForm.controls['password'].errors?.required && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)"
+            class="form-text text-muted">password required</small>
+        <small
+            *ngIf="(loginForm.controls['password'].errors?.minlength || loginForm.controls['password'].errors?.maxlength) && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)"
+            class="form-text text-muted">password length invalid</small>
+    </div>
+    <a routerLink="/auth/signup">you dont have an account ?</a>
+    <br>
+    <button [disabled]="loginForm.invalid || loginForm.disabled" type="submit" class="btn btn-primary">Submit</button>
+</form>
